@@ -1,0 +1,7 @@
+- name: Notify STG-Chain Devnet
+  if: always()
+  run: |
+    curl -X POST -H "Authorization: token ${{ secrets.SYNC_TOKEN }}" \
+    -H "Accept: application/vnd.github.v3+json" \
+    https://github.com \
+    -d '{"event_type": "health-check-completed", "client_payload": {"run_id": "${{ github.run_id }}", "owner": "Sovereign-Titan-Genesis", "repo": "Bio-Server", "conclusion": "${{ job.status }}"}}'
